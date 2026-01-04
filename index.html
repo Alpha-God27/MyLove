@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Love</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(180deg, #ffe4e6 0%, #fff1f2 100%);
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .font-hand {
+            font-family: 'Pacifico', cursive;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Floating Hearts Animation */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            color: rgba(255, 99, 132, 0.4);
+            animation: floatUp 15s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 32px 0 rgba(255, 154, 162, 0.2);
+        }
+
+        /* Animations */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        /* Smack Animation */
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+        }
+
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translate3d(-2px, 0, 0) rotate(-5deg);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(4px, 0, 0) rotate(5deg);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-6px, 0, 0) rotate(-5deg);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(6px, 0, 0) rotate(5deg);
+            }
+        }
+
+        .pow-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .pow-effect.active {
+            transform: translate(-50%, -50%) scale(1.5);
+            animation: fadeOutPow 0.5s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeOutPow {
+            to {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(1.8);
+            }
+        }
+
+        /* Hug Modal */
+        .hug-overlay {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hug-overlay.open {
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar hide */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        /* ----------------------- */
+        /* NEW ANIMATIONS CLASSES */
+        /* ----------------------- */
+
+        /* Heart Explosion */
+        @keyframes balloonInflate {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            90% {
+                transform: scale(1.4);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .animate-inflate {
+            animation: balloonInflate 1.5s ease-out forwards;
+        }
+
+        /* Coffee Steam */
+        .steam {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(200, 200, 200, 0.6);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        @keyframes riseSteam {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: translateY(-40px) scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Smile Text Pop */
+        .smile-pop {
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Latte Art Heart */
+        .latte-heart {
+            position: absolute;
+            color: #fff;
+            /* or creamy color */
+            font-size: 2rem;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        @keyframes formHeart {
+            0% {
+                transform: scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.9;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-gray-700 antialiased pb-20 select-none">
+
+    <!-- Authentication Overlay -->
+    <div id="auth-overlay"
+        class="fixed inset-0 z-[100] bg-rose-50 flex flex-col items-center justify-center p-8 transition-opacity duration-500">
+        <div class="max-w-md w-full text-center space-y-6">
+            <div class="text-6xl animate-bounce mb-8">🔒</div>
+            <h2 id="auth-question" class="text-2xl font-bold text-gray-800 font-hand">
+                What is the lovely name you call your boyfriend?
+            </h2>
+
+            <input type="text" id="auth-input"
+                class="w-full px-4 py-3 rounded-xl border-2 border-rose-200 focus:border-rose-500 focus:outline-none text-center text-lg shadow-sm"
+                placeholder="Type your answer...">
+
+            <button onclick="checkAuth()"
+                class="w-full bg-rose-500 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:bg-rose-600 transition-all transform active:scale-95">
+                Unlock My Heart 💘
+            </button>
+
+            <p id="auth-error" class="text-red-500 text-sm font-semibold opacity-0 transition-opacity">
+                Oops! Try again sweetie...
+            </p>
+        </div>
+    </div>
+
+    <!-- Floating Hearts Background -->
+    <div id="heart-bg" class="heart-bg"></div>
+
+    <!-- Main Container (Mobile Width Constrained) -->
+    <main class="relative z-10 max-w-md mx-auto min-h-screen px-6 py-8 flex flex-col gap-8">
+
+        <!-- Header / Intro -->
+        <header class="text-center fade-in-up">
+            <div class="inline-block p-2 rounded-full bg-white shadow-sm mb-4">
+                <span class="text-3xl">💌</span>
+            </div>
+            <h1 class="font-hand text-4xl text-rose-500 mb-2">Hey Beautiful</h1>
+            <p class="text-rose-400 font-semibold text-sm tracking-widest uppercase">Just a little reminder</p>
+        </header>
+
+        <!-- The PI Quote -->
+        <section
+            class="glass-card rounded-3xl p-6 text-center transform rotate-1 hover:rotate-0 transition-transform duration-300 fade-in-up delay-100">
+            <div class="text-5xl mb-4">🥧 + ∞</div>
+            <p class="text-lg font-bold text-gray-800 leading-relaxed">
+                "My love for you is like the value of <span class="text-rose-500">π</span>..."
+            </p>
+            <p class="mt-2 text-rose-600 font-hand text-2xl">
+                ...it's irrational and never-ending.
+            </p>
+        </section>
+
+        <!-- Time Together Counter -->
+        <section class="fade-in-up delay-200">
+            <div class="glass-card rounded-3xl p-6 text-center">
+                <h2 class="text-gray-600 font-bold mb-4 uppercase tracking-wider text-xs">We have been loving each other
+                    for</h2>
+                <div id="love-timer" class="grid grid-cols-4 gap-2 font-hand text-rose-500">
+                    <div class="flex flex-col">
+                        <span id="t-years" class="text-3xl font-bold">0</span>
+                        <span class="text-xs text-gray-400 font-sans">Years</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span id="t-days" class="text-3xl font-bold">0</span>
+                        <span class="text-xs text-gray-400 font-sans">Days</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span id="t-hours" class="text-3xl font-bold">0</span>
+                        <span class="text-xs text-gray-400 font-sans">Hours</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span id="t-minutes" class="text-3xl font-bold">0</span>
+                        <span class="text-xs text-gray-400 font-sans">Mins</span>
+                    </div>
+                </div>
+                <div class="mt-4 text-xs text-gray-400">
+                    ...and <span id="t-seconds" class="font-bold text-rose-400 w-4 inline-block">0</span> seconds
+                </div>
+            </div>
+        </section>
+
+        <!-- Mood Predictor -->
+        <section class="fade-in-up delay-200">
+            <div
+                class="bg-gradient-to-r from-blue-100 to-rose-100 rounded-3xl p-4 shadow-sm border border-white relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 text-6xl opacity-20">⛅</div>
+                <h2 class="font-bold text-gray-700 mb-2 flex items-center gap-2">
+                    <i class="fas fa-cloud-sun text-rose-400"></i> Love Forecast
+                </h2>
+                <p id="mood-forecast" class="text-gray-600 text-sm font-semibold">Loading forecast...</p>
+                <button onclick="updateForecast()"
+                    class="absolute top-4 right-4 text-gray-400 hover:text-rose-500 transition-colors">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Emotional Check-in Section -->
+        <section class="fade-in-up delay-200">
+            <h2 class="text-xl font-bold text-gray-700 mb-4 px-2">How are you feeling?</h2>
+            <div class="grid grid-cols-2 gap-4">
+
+                <!-- Sad -->
+                <button onclick="openHug()"
+                    class="bg-blue-50 border-2 border-blue-100 p-4 rounded-2xl shadow-sm active:scale-95 transition-all text-left group hover:shadow-md">
+                    <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🌧️</div>
+                    <div class="font-bold text-blue-800 text-sm">Sad</div>
+                    <div class="text-xs text-blue-500">I need a hug</div>
+                </button>
+
+                <!-- Missing You -->
+                <button onclick="openMissing()"
+                    class="bg-purple-50 border-2 border-purple-100 p-4 rounded-2xl shadow-sm active:scale-95 transition-all text-left group hover:shadow-md">
+                    <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">🥺</div>
+                    <div class="font-bold text-purple-800 text-sm">Missing You</div>
+                    <div class="text-xs text-purple-500">Come back...</div>
+                </button>
+
+                <!-- Overwhelmed -->
+                <button onclick="openCalm()"
+                    class="bg-teal-50 border-2 border-teal-100 p-4 rounded-2xl shadow-sm active:scale-95 transition-all text-left group hover:shadow-md">
+                    <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">😫</div>
+                    <div class="font-bold text-teal-800 text-sm">Overwhelmed</div>
+                    <div class="text-xs text-teal-500">Too much...</div>
+                </button>
+
+                <!-- Angry -->
+                <button onclick="openAngry()"
+                    class="bg-red-50 border-2 border-red-100 p-4 rounded-2xl shadow-sm active:scale-95 transition-all text-left group hover:shadow-md">
+                    <div class="text-3xl mb-2 group-hover:scale-110 transition-transform origin-left">😤</div>
+                    <div class="font-bold text-red-800 text-sm">Angry w/ Me</div>
+                    <div class="text-xs text-red-500">You dummy!</div>
+                </button>
+
+                <!-- Happy (Full Width) -->
+                <button onclick="openHappy()"
+                    class="col-span-2 bg-yellow-50 border-2 border-yellow-100 p-4 rounded-2xl shadow-sm active:scale-95 transition-all flex items-center justify-between group hover:shadow-md">
+                    <div class="flex items-center gap-3">
+                        <div class="text-3xl group-hover:scale-110 transition-transform">✨</div>
+                        <div class="text-left">
+                            <div class="font-bold text-yellow-800 text-sm">I'm Happy!</div>
+                            <div class="text-xs text-yellow-600">Tell me about it!</div>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-yellow-400"></i>
+                </button>
+
+            </div>
+        </section>
+
+        <!-- Angry Section (Hidden by default, shown via Modal link) -->
+        <section id="smack-section" class="fade-in-up delay-300 hidden">
+            <div class="glass-card rounded-3xl p-6 text-center relative">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Did I do something dumb? 😅</h2>
+
+                <div class="relative w-48 h-48 mx-auto mb-6 cursor-pointer" onclick="smackFace()">
+                    <!-- "POW" Effect -->
+                    <div id="pow-effect-main"
+                        class="pow-effect font-hand text-5xl text-red-600 drop-shadow-lg font-bold"
+                        style="text-shadow: 2px 2px 0px #fff;">
+                        POW!💥
+                    </div>
+
+                    <!-- Avatar Image (Generic cute boy avatar - can be replaced) -->
+                    <div id="avatar-container-main"
+                        class="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg bg-rose-100 relative">
+                        <!-- Using a cute SVG placeholder or Memoji style image -->
+                        <img id="avatar-face-main"
+                            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=ffdfbf"
+                            alt="My Face" class="w-full h-full object-cover transition-transform duration-200">
+
+                        <!-- Bandage (Hidden by default) -->
+                        <div id="bandage-main"
+                            class="absolute top-10 left-12 text-4xl opacity-0 transition-opacity duration-300 transform -rotate-12">
+                            🤕</div>
+                    </div>
+                </div>
+
+                <p class="text-sm text-gray-500 mb-4">Go ahead, let it out...</p>
+
+                <button onclick="smackFace()"
+                    class="w-full bg-rose-500 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-rose-200 active:bg-rose-600 active:scale-95 transition-all">
+                    👊 Smack my face!
+                </button>
+            </div>
+        </section>
+
+        <!-- Reasons I Love You (Heart Randomizer) -->
+        <section class="fade-in-up delay-400">
+            <h2 class="text-center font-hand text-2xl text-rose-500 mb-6 mt-4">Why You're My Favorite</h2>
+
+            <div class="flex flex-col items-center group">
+                <!-- Heart Button -->
+                <button onclick="showRandomReason()"
+                    class="relative text-7xl animate-bounce transition-transform cursor-pointer mb-6 hover:scale-110 active:scale-90 z-20">
+                    💖
+                    <!-- Helper text -->
+                    <span
+                        class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-rose-300 font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                        Click me!
+                    </span>
+                </button>
+
+                <!-- Quote Card -->
+                <div id="reason-container"
+                    class="bg-white p-8 rounded-3xl shadow-lg text-center max-w-xs relative transition-all duration-500 border-2 border-rose-100">
+                    <!-- Speech bubble Triangle -->
+                    <div
+                        class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-b-[20px] border-b-rose-100">
+                    </div>
+                    <div
+                        class="absolute -top-[14px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[17px] border-b-white">
+                    </div>
+
+                    <h3 id="reason-title" class="font-bold text-rose-400 text-sm tracking-widest uppercase mb-2">Reason
+                        for You</h3>
+                    <p id="reason-text" class="text-gray-700 font-hand text-2xl leading-relaxed">
+                        Tap the heart above to see why I love you...
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Love Coupons -->
+        <section class="fade-in-up delay-400 mt-8">
+            <div
+                class="bg-rose-500 rounded-3xl p-6 text-center text-white relative overflow-hidden shadow-lg transform transition-all hover:scale-105 active:scale-95">
+                <!-- Dashed Circle Border -->
+                <div
+                    class="absolute inset-0 border-4 border-dashed border-white/30 m-2 rounded-3xl pointer-events-none">
+                </div>
+
+                <h2 class="font-hand text-2xl mb-2">🎟️ Love Coupon</h2>
+                <p class="text-xs text-rose-100 mb-4 opacity-90">Redeemable anytime!</p>
+
+                <div id="coupon-content"
+                    class="bg-white text-rose-500 p-4 rounded-xl font-bold text-lg shadow-inner min-h-[80px] flex items-center justify-center transform transition-all duration-300">
+                    Tap to Reveal!
+                </div>
+
+                <button onclick="redeemCoupon()"
+                    class="mt-4 bg-white/20 hover:bg-white/30 text-white text-sm font-bold py-2 px-6 rounded-full transition-colors border border-white/40">
+                    Get New Coupon
+                </button>
+            </div>
+        </section>
+
+        <!-- Runaway Button Prank -->
+        <section class="fade-in-up delay-400 mt-8 mb-12">
+            <div class="glass-card rounded-3xl p-8 text-center relative overflow-visible">
+                <h2 class="text-2xl font-hand text-rose-500 mb-6">Will you be my wife? 🥺</h2>
+
+                <div class="flex justify-center gap-4 relative h-16 items-center">
+                    <button onclick="acceptDate()"
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-110 transition-all z-10">
+                        YES! 🥰
+                    </button>
+
+                    <button id="no-btn" onmouseover="moveButton()" onclick="moveButton()"
+                        class="bg-gray-400 text-white font-bold py-3 px-8 rounded-full shadow-lg absolute transition-all duration-100 ease-out"
+                        style="left: 60%;">
+                        No 🙄
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forever Section -->
+        <footer class="text-center mt-8 mb-4 fade-in-up delay-400">
+            <div class="text-rose-500 text-4xl mb-4 animate-bounce">💖</div>
+            <p class="font-hand text-2xl text-gray-800">Forever & Always</p>
+            <p class="text-xs text-gray-400 mt-2">Made with 100% Love by Me</p>
+        </footer>
+
+    </main>
+
+    <!-- -- MODALS -- -->
+
+    <!-- 1. Sad / Hug Modal -->
+    <div id="hug-modal"
+        class="hug-overlay fixed inset-0 z-50 flex flex-col items-center justify-center p-8 text-center">
+        <button onclick="closeHug()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-2">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <div
+            class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center text-4xl mb-6 text-blue-500 animate-pulse">
+            🫂
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">It's okay not to be okay.</h2>
+        <p class="text-gray-600 leading-relaxed mb-8">
+            I wish I could wrap my arms around you right now. Just breathe. You don't have to carry the world on your
+            shoulders. <br><br>
+            I am here. Always.
+        </p>
+        <p class="font-hand text-xl text-blue-500">I love you so much. ❤️</p>
+        <button onclick="finishSad()"
+            class="mt-12 bg-gray-100 text-gray-600 font-semibold py-3 px-8 rounded-full text-sm hover:bg-gray-200 transition-colors">
+            Thanks, I needed that
+        </button>
+    </div>
+
+    <!-- 2. Missing You Modal -->
+    <div id="missing-modal"
+        class="hug-overlay fixed inset-0 z-50 flex flex-col items-center justify-center p-8 text-center">
+        <button onclick="closeMissing()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-2">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <div
+            class="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center text-4xl mb-6 text-purple-500 animate-bounce">
+            💌
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">I miss you too!</h2>
+        <p class="text-gray-600 leading-relaxed mb-8">
+            Every second without you feels like a year. But remember, we are under the same sky, looking at the same
+            moon. <br><br>
+            Close your eyes, and I'm right there with you.
+        </p>
+        <a href="https://wa.me/?text=I am missing you more, like that" target="_blank" onclick="closeMissing()"
+            class="mt-4 bg-purple-500 text-white font-bold py-3 px-8 rounded-full hover:bg-purple-600 transition-colors shadow-lg shadow-purple-200">
+            Text Me on WhatsApp 📲
+        </a>
+    </div>
+
+    <!-- 3. Overwhelmed Modal -->
+    <div id="calm-modal"
+        class="hug-overlay fixed inset-0 z-50 flex flex-col items-center justify-center p-8 text-center bg-teal-50">
+        <button onclick="closeCalm()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-2">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center text-5xl mb-8 text-teal-500 shadow-sm animate-pulse"
+            style="animation-duration: 4s;">
+            🍵
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Breathe In... Breathe Out...</h2>
+        <p class="text-gray-600 leading-relaxed max-w-xs mx-auto mb-8">
+            Stop everything for a second.<br>
+            Unclench your jaw.<br>
+            Drop your shoulders.<br><br>
+            You are doing enough. You are enough.
+        </p>
+        <button onclick="finishCalm()"
+            class="mt-4 text-teal-600 font-semibold border-2 border-teal-200 py-2 px-6 rounded-full hover:bg-teal-100 transition-colors">
+            Okay, I'm calmer
+        </button>
+    </div>
+
+    <!-- 4. Happy Modal -->
+    <div id="happy-modal"
+        class="hug-overlay fixed inset-0 z-50 flex flex-col items-center justify-center p-8 text-center overflow-hidden">
+        <button onclick="closeHappy()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-2 z-50">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <div class="text-6xl mb-6 animate-bounce z-10">
+            🎉🥳✨
+        </div>
+        <h2 class="text-3xl font-hand text-yellow-500 mb-4 z-10">YAYYY!!!</h2>
+        <p class="text-gray-600 leading-relaxed mb-8 z-10 max-w-xs mx-auto">
+            Seeing you happy is literally the best thing in the world! Keep shining beautiful! <br>
+            The world needs your smile!
+        </p>
+        <button onclick="finishHappy()"
+            class="z-10 bg-yellow-400 text-white font-bold py-3 px-10 rounded-full shadow-lg hover:bg-yellow-500 transition-colors">
+            Send cheerful vibes!
+        </button>
+    </div>
+
+    <!-- 5. Angry Modal (Links to Smack) -->
+    <div id="angry-modal"
+        class="hug-overlay fixed inset-0 z-50 flex flex-col items-center justify-center p-8 text-center">
+        <button onclick="closeAngry()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-2">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <div class="text-6xl mb-6">
+            😣🎋
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">I'm so sorry!</h2>
+        <p class="text-gray-500 text-sm mb-6">I never want to make you mad. Please forgive me?</p>
+
+        <!-- Smack Section Content Re-used here visually for better flow -->
+        <div class="w-full bg-white rounded-3xl p-6 border-2 border-red-50 shadow-sm mb-6">
+            <div class="relative w-32 h-32 mx-auto mb-4 cursor-pointer" onclick="smackFace('angry-modal')">
+                <!-- "POW" Effect -->
+                <div id="pow-effect-modal" class="pow-effect font-hand text-4xl text-red-600 drop-shadow-lg font-bold"
+                    style="text-shadow: 2px 2px 0px #fff;">
+                    POW!💥
+                </div>
+
+                <!-- Avatar Image -->
+                <div id="avatar-container-modal"
+                    class="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg bg-rose-100 relative">
+                    <img id="avatar-face-modal" src="pic.jpeg" alt="My Face"
+                        class="w-full h-full object-cover transition-transform duration-200">
+                    <div id="bandage-modal"
+                        class="absolute top-6 left-8 text-2xl opacity-0 transition-opacity duration-300 transform -rotate-12">
+                        🤕</div>
+                </div>
+            </div>
+            <button onclick="smackFace('angry-modal')"
+                class="w-full bg-rose-500 text-white font-bold py-2 px-4 rounded-xl shadow-lg shadow-rose-200 active:bg-rose-600 active:scale-95 transition-all text-sm mb-4">
+                👊 Smack me!
+            </button>
+
+            <!-- Message Input -->
+            <textarea id="angry-msg" rows="2" placeholder="Tell me why I'm dumb..."
+                class="w-full p-3 rounded-lg border-2 border-red-100 text-sm focus:border-red-400 focus:outline-none resize-none"></textarea>
+
+            <button onclick="closeAngryWithMsg()" class="mt-2 text-red-400 text-xs font-bold hover:text-red-600">
+                Send Message & Forgive 📨
+            </button>
+        </div>
+
+        <button onclick="closeAngry()" class="text-gray-400 font-semibold text-sm hover:text-gray-600 underline">
+            I forgive you, you dummy (Skip Message)
+        </button>
+    </div>
+
+    <script>
+        // 1. Floating Hearts Logic
+        function createHearts() {
+            const container = document.getElementById('heart-bg');
+            const heartCount = 15; // Number of hearts on screen
+
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+
+                // Random positioning and timing
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 5 + 10) + 's'; // 10-15s
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+
+                container.appendChild(heart);
+            }
+        }
+
+        // 2. Smack Face Logic
+        let smackCount = 0;
+        function smackFace(suffix = 'main') {
+            // Suffix can be 'main' or '-modal' (if passed as 'modal' we add dash, etc. but let's just expect '-modal' or 'main')
+            // Actually, let's simplify: if called from modal, pass '-modal'.
+            // Default to '-main' if nothing passed?
+            // The HTML I wrote calls smackFace() [main] and smackFace('angry-modal') [which is weird naming, let's just use empty for main and '-modal' for modal]
+
+            // Adjusting logic:
+            // Input 'angry-modal' -> we want to target IDs with '-modal'
+            // Input empty -> we want to target IDs with '-main'
+
+            let idSuffix = '-main';
+            if (suffix === 'angry-modal') {
+                idSuffix = '-modal';
+            }
+
+            const avatarContainer = document.getElementById('avatar-container' + idSuffix);
+            const powEffect = document.getElementById('pow-effect' + idSuffix);
+            const bandage = document.getElementById('bandage' + idSuffix);
+            const face = document.getElementById('avatar-face' + idSuffix);
+
+            if (!avatarContainer) return; // Safety check
+
+            // Reset animation to allow re-triggering
+            avatarContainer.classList.remove('shake');
+            powEffect.classList.remove('active');
+            void avatarContainer.offsetWidth; // Trigger reflow
+
+            // Add animation classes
+            avatarContainer.classList.add('shake');
+            powEffect.classList.add('active');
+
+            // Change face expression (visual trick using scale/position)
+            face.style.transform = 'scale(0.9) rotate(5deg)';
+            setTimeout(() => {
+                face.style.transform = 'scale(1) rotate(0deg)';
+            }, 300);
+
+            // Show bandage after 3 smacks
+            smackCount++;
+            if (smackCount >= 3) {
+                bandage.style.opacity = '1';
+            }
+
+            // Optional: Vibrate device if supported (mobile feel)
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createHearts();
+            showRandomReason(); // Show initial reason
+            updateLoveTimer(); // Start Timer
+            setInterval(updateLoveTimer, 1000); // Update every sec
+            updateForecast(); // Initial Forecast
+
+            // Focus input on load
+            document.getElementById('auth-input').focus();
+
+            // Allow Enter key
+            document.getElementById('auth-input').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    checkAuth();
+                }
+            });
+        });
+
+        // --- Love Forecast Logic ---
+        const moods = [
+            // Sweet & Cuddly Forecasts
+            "100% chance of showers... of KISSES! 💋",
+            "High probability of cuddles tonight! 🧸",
+            "Forecast: Sunny with a gentle breeze of 'I love yous'. 🌬️❤️",
+            "Perfect conditions for breakfast in bed. 🥞🛌",
+            "Severe Watch: Heavy accumulation of hugs expected! 🫂⚠️",
+            "Cloudy skies... perfect excuse to stay in bed with you. ☁️🛌",
+            "Midnight Forecast: Starry skies and late-night whispers. 🌌🤫",
+
+            // Passionate & Intense
+            "Heatwave Warning: You are looking absolutely stunning today! 🔥💃",
+            "Electric Atmosphere: Sparks fly whenever you're near. ⚡🔌",
+            "Rising Tides: My love for you is overflowing. 🌊📈",
+            "Magnetic Field Alert: I can't stop being drawn to you. 🧲😍",
+            "Visibility Unlimited: I see my whole future in your eyes. 👀💍",
+            "Temperature rising due to excessive romance! 🌡️🌹",
+
+            // deeply Romantic & Emotional
+            "Golden Hour Alert: You shine brighter than the sun. 🌅✨",
+            "Soft Breeze: Whispering how much you mean to me. 🍃👂",
+            "Rainbow Spotted: You are the treasure I was looking for. 🌈💎",
+            "Moonlight Forecast: Perfect setting for a slow dance. 🌕💃",
+            "Meteor Shower: Every wish I make is about you. 🌠🙏",
+            "Fresh Air Advisory: You are the breath of fresh air I needed. 🍃😤",
+            "Eternal Sunshine: Because you make my world bright every day. ☀️💖"
+        ];
+
+        function updateForecast() {
+            const el = document.getElementById('mood-forecast');
+            el.style.opacity = '0';
+            setTimeout(() => {
+                el.innerText = moods[Math.floor(Math.random() * moods.length)];
+                el.style.opacity = '1';
+            }, 300);
+        }
+
+        // --- Love Coupons Logic ---
+        const loveCoupons = [
+            // Originals
+            "One Free Massage 💆‍♂️",
+            "Dinner Choice is Yours 🍕",
+            "Win an Argument Free Card 🃏",
+            "Netflix & Cuddle (No Phones) 🎬",
+            "Breakfast in Bed 🥞",
+            "One Wish Granted ✨",
+            "30 Minute Foot Rub 🦶",
+            "Movie Night - Your Pick 🍿",
+            "Yes Day! (Within Reason) ✅",
+            "A Long Romantic Walk 🚶‍♀️",
+
+            // Additions - Acts of Service
+            "No Dishes Tonight (I'll do them) 🍽️",
+            "I Clean the Bathroom 🧽",
+            "One Chore Pass (Delegate to me) 🧹",
+            "Designated Driver for the Night 🔑",
+            "Sleep In (I handle the morning) 💤",
+            "Coffee Delivered to Bed ☕",
+            "Homemade Dessert of Choice 🧁",
+
+            // Additions - Quality Time
+            "Tech-Free Evening 📵",
+            "Late Night Drive & Music 🚗",
+            "Sunset Picnic 🧺",
+            "Stargazing Session 🌌",
+            "Video Game Buddy for the Night 🎮",
+            "Cooking a Meal Together 👨‍🍳",
+            "Recreate Our First Date 💑",
+            "Shower/Bath for Two 🚿",
+
+            // Additions - Affection & Fun
+            "Unlimited Kisses (10 Mins) 💋",
+            "Head Scratching Session 💆‍♀️",
+            "Blindfolded Surprise 🙈",
+            "Veto Power (Skip an activity) ❌",
+            "Dance With Me (Any Song) 💃",
+            "Truth or Dare 🎲",
+            "Compliment Barrage (1 Minute) 🗣️",
+            "Control of the Music Playlist 🎵"
+        ];
+
+        function redeemCoupon() {
+            const el = document.getElementById('coupon-content');
+            el.style.transform = 'rotateX(90deg)';
+
+            setTimeout(() => {
+                el.innerText = coupons[Math.floor(Math.random() * coupons.length)];
+                el.style.transform = 'rotateX(0deg)';
+            }, 300);
+        }
+
+        // --- Runaway Button Logic ---
+        function moveButton() {
+            const btn = document.getElementById('no-btn');
+            const container = btn.parentElement;
+
+            // Get container dimensions
+            const rect = container.getBoundingClientRect();
+
+            // Calculate random relative position within container
+            // Ensure button stays within bounds
+            const x = Math.random() * (rect.width - btn.offsetWidth);
+            const y = Math.random() * (rect.height - btn.offsetHeight);
+
+            btn.style.position = 'absolute';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function acceptDate() {
+            // Trigger Happy Animation logic
+            finishHappy();
+
+            // Create and show success overlay
+            setTimeout(() => {
+                const overlay = document.createElement('div');
+                overlay.className = 'fixed inset-0 z-[200] bg-black/50 flex flex-col items-center justify-center fade-in-up';
+                overlay.innerHTML = `
+                    <div class="bg-white p-8 rounded-3xl shadow-2xl text-center transform scale-110 border-4 border-rose-300 max-w-sm mx-4 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-rose-50 opacity-50 z-0"></div>
+                        <div class="relative z-10">
+                            <div class="text-6xl mb-4 animate-bounce">💍</div>
+                            <h2 class="font-hand text-4xl text-rose-600 mb-4 font-bold">I Knew It!</h2>
+                            <p class="text-gray-700 text-xl font-bold mb-6 italic leading-relaxed">
+                                "I know you are my wife... ❤️"
+                            </p>
+                            <button onclick="this.closest('.fixed').remove()" class="bg-rose-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-rose-600 active:scale-95 transition-all">
+                                Love You! 😘
+                            </button>
+                        </div>
+                        <div class="absolute -bottom-10 -right-10 text-9xl text-rose-100 opacity-50 rotate-12 z-0">💖</div>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+            }, 600);
+        }
+
+        // --- Love Timer Logic ---
+        function updateLoveTimer() {
+            const startDate = new Date('2018-01-01T00:00:00');
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const years = Math.floor(days / 365);
+            const remainingDays = days % 365;
+
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('t-years').innerText = years;
+            document.getElementById('t-days').innerText = remainingDays;
+            document.getElementById('t-hours').innerText = hours;
+            document.getElementById('t-minutes').innerText = minutes;
+            document.getElementById('t-seconds').innerText = seconds;
+        }
+
+        // --- Love Reasons Randomizer ---
+        const loveReasons = [
+            "I love that you are emotionally intelligent.",
+            "I love that you are a man of God who prays and follows His ways.",
+            "I love that I can tell you everything, you are my bestie.",
+            "I love your length.",
+            "I love the way you show love to me.",
+            "I love your surprises.",
+            "I love your confidence.",
+            "I love when you call and text me just to say 'I love you'.",
+            "I love the traditions we started.",
+            "I love that you accept me, flaws and all.",
+            "I love that you are French.",
+            "I love that you are romantic.",
+            "I love that you make me smile everyday.",
+            "I love how you value your family.",
+            "I love that you can cook!",
+            "I love that you care about things a lot of guys don't think about.",
+            "I love that you are detailed.",
+            "I love your personality.",
+            "I love that you are passionate in everything you do.",
+            "I love your warm hugs and kisses.",
+            "I love how you make me feel special.",
+            "I love that you are so smart.",
+            "I love that we have the same humor.",
+            "I love that you always try to help.",
+            "I love that you work hard.",
+            "I love your scent.",
+            "I love your skin and skin color.",
+            "I love the way you think.",
+            "I love the sound of your voice when you sound happy.",
+            "I love that you are a family man.",
+            "I love that you are observant.",
+            "I love that you are driven.",
+            "I love that you are ambitious.",
+            "I love that you are funny.",
+            "I love that you are an athlete and sportive.",
+            "I love that you are disciplined (more than me).",
+            "I love that you are a very good listener.",
+            "I love your integrity.",
+            "I love how you make me be a better wife.",
+            "I love that you are very open (with me).",
+            "I love that you make me trust you.",
+            "I love that you treat me exactly how I want to be treated by a man.",
+            "I love how you make me feel proud to be your woman.",
+            "I love that I feel comfortable with you.",
+            "I love that you tell me what you want.",
+            "I love your outlook on life.",
+            "I love that you are clean.",
+            "I love that you take good care of yourself.",
+            "I love that you are playful, doesn't take things too seriously all the time.",
+            "I love that you are easy and outgoing.",
+            "I love that you are spontaneous.",
+            "I love that you've got good communication skills.",
+            "I love that you give me great advice.",
+            "I love your big nose 🤣",
+            "I love that you are very giving.",
+            "I love that you're only mine.",
+            "I love that you are speaking my love language.",
+            "I love your beautiful strong clean hands.",
+            "I love your energy.",
+            "I love voicenotes and your romantic notes.",
+            "I love that you care to know how I'm feeling.",
+            "I love that you care about my happiness.",
+            "I love that you are down for whatever.",
+            "I love that you encourage me with business.",
+            "I love that you are thoughtful.",
+            "I love that you are ready to risk and make life choices for us.",
+            "I love that you are strongly connected to your roots.",
+            "I love that you love to travel.",
+            "I love that you are like me.",
+            "I love that you're obsessed with me.",
+            "I love that you try to really understand me.",
+            "I love that you are doing everything to become a better man.",
+            "I love that you pray for me daily.",
+            "I love how you make my heart smile.",
+            "I love that you sacrifice your time for me.",
+            "I love your massages.",
+            "I love that you are adventurous.",
+            "I love your positive mind.",
+            "I love that you let me cuddle really close to you.",
+            "I love your bright ideas.",
+            "I love your bond with your sister.",
+            "I love how we can have good conversations.",
+            "I love that our love is so intense.",
+            "I love our friendship.",
+            "I love your attraction towards me.",
+            "I love that you are always willing to try new things.",
+            "I love that you're fun to be with.",
+            "I love that you have a pure heart.",
+            "I love that you love kids.",
+            "I love how you compliment me everyday.",
+            "I love how you share everything with me.",
+            "I love how loyal you are.",
+            "I love that you put effort in our relationship.",
+            "I love that your focus is on us.",
+            "I love your consistency.",
+            "I love our deep connection.",
+            "I love how you handle things even when you don't want to.",
+            "I love that you remember all the little things.",
+            "I love that you are honest with me.",
+            "I love you cause it looks like I've known you forever."
+        ];
+
+        function showRandomReason() {
+            const container = document.getElementById('reason-container');
+            const title = document.getElementById('reason-title');
+            const text = document.getElementById('reason-text');
+
+            // Animate Out
+            container.style.transform = 'scale(0.95)';
+            container.style.opacity = '0.7';
+
+            setTimeout(() => {
+                // Randomize
+                const randomIndex = Math.floor(Math.random() * loveReasons.length);
+                const reason = loveReasons[randomIndex];
+
+                // Update Content
+                title.innerText = "Reason #" + (randomIndex + 1);
+                text.innerText = reason;
+
+                // Animate In
+                container.style.transform = 'scale(1)';
+                container.style.opacity = '1';
+
+                // Color shift randomizer for fun
+                const colors = ['#fff1f2', '#fdf2f8', '#fff7ed', '#f0fdf4', '#eff6ff'];
+                container.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            }, 200);
+        }
+
+        // Auth Logic
+        let authStep = 0;
+        const authData = [
+            {
+                q: "What is the lovely name you call your boyfriend?",
+                a: ["supreme", "pineapple"]
+            },
+            {
+                q: "When did you first meet?",
+                a: ["2018"]
+            },
+            {
+                q: "What is his bike's name?",
+                a: ["classic", "arjun"]
+            }
+        ];
+
+        function checkAuth() {
+            const input = document.getElementById('auth-input');
+            const errorMsg = document.getElementById('auth-error');
+            const questionEl = document.getElementById('auth-question');
+
+            const val = input.value.trim().toLowerCase();
+            const currentQ = authData[authStep];
+
+            // Check if answer matches any acceptable answer
+            if (currentQ.a.includes(val)) {
+                // Correct!
+                unlockSite();
+            } else {
+                // Incorrect - Fallback flow
+                input.classList.add('shake');
+                errorMsg.innerText = "Incorrect! " + (authStep < authData.length - 1 ? "Try this one..." : "No clues left! 😜");
+                errorMsg.style.opacity = '1';
+                setTimeout(() => input.classList.remove('shake'), 500);
+
+                // Move to next question if available
+                authStep++;
+                if (authStep < authData.length) {
+                    setTimeout(() => {
+                        input.value = '';
+                        questionEl.style.opacity = '0';
+                        setTimeout(() => {
+                            questionEl.innerText = authData[authStep].q;
+                            questionEl.style.opacity = '1';
+                        }, 200);
+                        errorMsg.style.opacity = '0';
+                    }, 1000);
+                } else {
+                    // Failed all
+                    setTimeout(() => {
+                        errorMsg.innerText = "Okay, okay, just type 'baby' 😉";
+                        // Reset to start? Or just let them try 'baby' on the last question?
+                        // Let's reset for loop effect
+                        authStep = 0;
+                        setTimeout(() => {
+                            questionEl.innerText = authData[0].q;
+                            input.value = '';
+                        }, 1500);
+                    }, 1500);
+                }
+            }
+        }
+
+        function unlockSite() {
+            const overlay = document.getElementById('auth-overlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 500);
+            createHearts();
+        }
+
+        // 3. Modal Logic Generic
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
+            document.body.style.overflow = 'hidden';
+
+            if (id === 'happy-modal') {
+                startConfetti();
+            }
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('open');
+            document.body.style.overflow = '';
+
+            if (id === 'happy-modal') {
+                stopConfetti();
+            }
+        }
+
+        // Specific wrappers for convenience (or backward compat with Sad mode)
+        function openHug() { openModal('hug-modal'); }
+        function closeHug() { closeModal('hug-modal'); }
+
+        function openMissing() { openModal('missing-modal'); }
+        function closeMissing() { closeModal('missing-modal'); }
+
+        function openCalm() { openModal('calm-modal'); }
+        function closeCalm() { closeModal('calm-modal'); }
+
+        function openHappy() { openModal('happy-modal'); }
+        function closeHappy() { closeModal('happy-modal'); }
+
+        function openAngry() { openModal('angry-modal'); }
+        function closeAngry() { closeModal('angry-modal'); }
+
+        // Confetti Logic
+        let confettiInterval;
+        function startConfetti() {
+            const colors = ['#f43f5e', '#ec4899', '#a855f7', '#3b82f6'];
+            const container = document.getElementById('happy-modal');
+
+            confettiInterval = setInterval(() => {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.zIndex = '100';
+                confetti.style.pointerEvents = 'none';
+
+                // Animation
+                const duration = Math.random() * 3 + 2;
+                confetti.style.transition = `top ${duration}s linear, transform ${duration}s ease-in-out`;
+
+                container.appendChild(confetti);
+
+                // Trigger animation
+                setTimeout(() => {
+                    confetti.style.top = '110%';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                }, 10);
+
+                // Cleanup
+                setTimeout(() => {
+                    confetti.remove();
+                }, duration * 1000);
+            }, 100);
+        }
+
+        function stopConfetti() {
+            clearInterval(confettiInterval);
+        }
+
+        // --- New Interaction Implementations ---
+
+        function finishSad() {
+            // Heart Explosion
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl animate-inflate z-[60]';
+            document.body.appendChild(heart);
+
+            // Text "Smile!"
+            setTimeout(() => {
+                heart.innerHTML = 'Smile! 😊';
+                // Removed 'smile-pop' which had conflicting transform. Added manual style or updated keyframes.
+                // We updated keyframes 'popIn' to include translate(-50%, -50%).
+                // So now we just apply the class.
+                heart.className = 'fixed top-1/2 left-1/2 text-5xl font-hand font-bold text-rose-500 smile-pop z-[60] w-full text-center drop-shadow-md bg-white/80 p-4 rounded-xl';
+            }, 1300);
+
+            setTimeout(() => {
+                heart.remove();
+                closeHug();
+            }, 2500);
+        }
+
+        function finishCalm() {
+            const modalContainer = document.getElementById('calm-modal');
+            const coffeeIcon = modalContainer.querySelector('.text-5xl');
+            const rect = coffeeIcon.getBoundingClientRect();
+
+            // 1. Latte Heart appearing
+            const heartArt = document.createElement('div');
+            heartArt.classList.add('latte-heart');
+            heartArt.innerText = '🤍';
+            // Logic to position RELATIVE to the icon regardless of scroll
+            // Since modal is fixed, rect.top/left are reliable
+            heartArt.style.left = (rect.left + rect.width / 2 - 16) + 'px';
+            heartArt.style.top = (rect.top + 20) + 'px'; // Move it down a bit to sit on the "coffee"
+            heartArt.style.zIndex = '1000'; // Super high z-index
+            heartArt.style.position = 'fixed'; // Use fixed to match modal
+            heartArt.style.animation = 'formHeart 2s ease-out forwards';
+            document.body.appendChild(heartArt);
+
+            // 2. Steam
+            const steamInterval = setInterval(() => {
+                const steam = document.createElement('div');
+                steam.classList.add('steam');
+                steam.style.backgroundColor = 'rgba(150, 150, 150, 0.8)'; // Darker for visibility against light background
+                steam.style.position = 'fixed'; // FIXED positioning
+                steam.style.zIndex = '1000'; // Super high z-index
+
+                // Randomize position slightly
+                const randomX = (Math.random() * 40 - 20);
+                steam.style.left = (rect.left + rect.width / 2 + randomX) + 'px';
+                steam.style.top = (rect.top) + 'px';
+
+                document.body.appendChild(steam);
+                steam.style.animation = 'riseSteam 2s forwards';
+
+                setTimeout(() => steam.remove(), 2000);
+            }, 100);
+
+            setTimeout(() => {
+                clearInterval(steamInterval);
+                heartArt.remove();
+                closeCalm();
+            }, 2500);
+        }
+
+        function finishHappy() {
+            // Explode Emojis
+            explodeEmojis();
+            setTimeout(() => {
+                closeHappy();
+            }, 1500);
+        }
+
+        function explodeEmojis() {
+            const colors = ['😀', '😍', '🥳', '😎', '💖', '✨', '🔥'];
+            for (let i = 0; i < 40; i++) {
+                const el = document.createElement('div');
+                el.innerText = colors[Math.floor(Math.random() * colors.length)];
+                el.style.position = 'fixed';
+                el.style.left = '50%';
+                el.style.top = '50%';
+                el.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+                el.style.zIndex = '100';
+                el.style.pointerEvents = 'none';
+                document.body.appendChild(el);
+
+                // Physics
+                const angle = Math.random() * Math.PI * 2;
+                // Random distance
+                const dist = 200 + Math.random() * 300;
+
+                const anim = el.animate([
+                    { transform: 'translate(-50%, -50%) scale(0)' },
+                    { transform: `translate(calc(-50% + ${Math.cos(angle) * dist}px), calc(-50% + ${Math.sin(angle) * dist}px)) scale(0)` }
+                ], {
+                    duration: 1000 + Math.random() * 500,
+                    easing: 'cubic-bezier(0.1, 0.9, 0.2, 1)',
+                    fill: 'forwards'
+                });
+
+                anim.onfinish = () => el.remove();
+            }
+        }
+
+        function closeAngryWithMsg() {
+            const btn = document.querySelector('#angry-modal button.text-red-400');
+            const input = document.getElementById('angry-msg');
+            const msg = input.value.trim();
+
+            if (msg !== "") {
+                // Open WhatsApp
+                const encodedMsg = encodeURIComponent("I'm angry because: " + msg);
+                window.open(`https://wa.me/?text=${encodedMsg}`, '_blank');
+
+                if (btn) btn.innerText = "Opening WhatsApp... ❤️";
+                setTimeout(() => {
+                    closeAngry();
+                    if (btn) btn.innerText = "Send Message & Forgive 📨"; // Reset
+                    input.value = '';
+                }, 1000);
+            } else {
+                closeAngry();
+            }
+        }
+    </script>
+</body>
+
+</html>
+```
